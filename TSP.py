@@ -7,9 +7,10 @@ def solve_tsp(G):
 
         #need to get the current node 
         curr = path[-1] 
-        next_node = min(range(n), key=lambda x: G[curr][x] if x not in path else float('inf'))
+        next_node = min((neighbor for neighbor in range(n) if G[curr][neighbor] > 0 and neighbor not in path),
+            key=lambda x: G[curr][x])
         #appends nearest node 
         path.append(next_node)
-        
+
     path.append(0)
     return path
