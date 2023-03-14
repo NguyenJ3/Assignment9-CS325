@@ -1,10 +1,15 @@
 def solve_tsp(G):
     n = len(G)
-    #counters to track node 
 
-    visited = [False] * n
+    #first node
     path = [0]
-    visited[0] = True
-    curr = 0
+    for _ in range(n-1):
 
-    
+        #need to get the current node 
+        curr = path[-1] 
+        next_node = min(range(n), key=lambda x: G[curr][x] if x not in path else float('inf'))
+        #appends nearest node 
+        path.append(next_node)
+        
+    path.append(0)
+    return path
